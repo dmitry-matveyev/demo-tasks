@@ -1,5 +1,6 @@
 <template lang="pug">
   div.task-page
+    BackButton.task-page__back
     h1 Task: {{ currentTaskData.title }}
 
     div.task-page__info {{ currentTaskData.description }}
@@ -29,6 +30,10 @@ import statuses from '@/utils/statuses';
 
 export default {
   name: 'ExistingTask',
+
+  components: {
+    BackButton: () => import('@/components/Button/Button.vue'),
+  },
 
   props: {
     currentTaskData: {

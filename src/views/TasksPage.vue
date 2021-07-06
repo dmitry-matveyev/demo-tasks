@@ -97,7 +97,7 @@ export default {
     bottom: 20px
     color: rgb(144 165 184)
 
-  &__status, &__remove, &__create, input
+  &__status, &__remove, &__create, &__back, input
     height: 40px
     border: none
     background: #fff
@@ -120,5 +120,9 @@ export default {
   &__create
     background: #acffb7
     color: #249423
+
+  &__back
+    background: #acfcff
+    color: #00b6bf
 
 </style>
