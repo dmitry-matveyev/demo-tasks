@@ -4,18 +4,16 @@
 
     div.task-page__info Title:
       br
-      input(
-        v-model="task.title"
-        type="text"
-        @keyup.enter="createTask"
+      MyInput(
+        :value.sync="task.title"
+        @changeCreateTask="createTask"
       )
 
     div.task-page__info Description:
       br
-      input(
-        v-model="task.description"
-        type="text"
-        @keyup.enter="createTask"
+      MyInput(
+        :value.sync="task.description"
+        @changeCreateTask="createTask"
       )
 
     button.task-page__create(
@@ -26,6 +24,10 @@
 <script>
 export default {
   name: 'NewTask',
+
+  components: {
+    MyInput: () => import('@/components/Input/MyInput.vue'),
+  },
 
   data() {
     return {
