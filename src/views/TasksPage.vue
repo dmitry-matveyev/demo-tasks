@@ -12,8 +12,6 @@
       v-else
       :currentTaskData="currentTaskData"
       @changeStatus="changeTaskStatus"
-      @changeTitle="changeTaskTitle"
-      @changeDescription="changeTaskDescription"
       @changeLoadingState="changeLoadingState"
     )
 </template>
@@ -69,12 +67,6 @@ export default {
   methods: {
     changeTaskStatus(newStatus) {
       this.currentTaskData.status = newStatus;
-    },
-    changeTaskTitle(newTitle) {
-      this.currentTaskData.title = newTitle;
-    },
-    changeTaskDescription(newDescription) {
-      this.currentTaskData.description = newDescription;
     },
     handleCreateTask(newTaskObj) {
       this.creatingNewTask = false;

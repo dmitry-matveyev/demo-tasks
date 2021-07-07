@@ -5,12 +5,10 @@
 
     MyInput(
       :value.sync="currentTaskData.title"
-      @input="titleHandler"
     )
 
     MyInput(
       :value.sync="currentTaskData.description"
-      @input="descriptionHandler"
     )
 
     div.task-page__date {{ currentTaskData.created_date }}
@@ -80,12 +78,6 @@ export default {
 
           this.$router.push({ path: '/' });
         });
-    },
-    titleHandler(event) {
-      this.$emit('changeTitle', event.target.value);
-    },
-    descriptionHandler(event) {
-      this.$emit('changeDescription', event.target.value);
     },
     selectHandler(event) {
       const value = Number.parseInt(event.target.value, 10);
