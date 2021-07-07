@@ -1,6 +1,6 @@
 <template lang="pug">
-  button(
-    class="task-page__create"
+  a(
+    class="task-page__back"
     @click="back"
   ) Назад
 </template>
@@ -16,6 +16,9 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="sass">
+.task-page__back
+  font-size: 25px
+.task-page__back:hover
+  cursor: pointer
 </style>

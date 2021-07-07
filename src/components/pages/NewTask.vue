@@ -1,17 +1,16 @@
 <template lang="pug">
   div
-    BackButton
-    h1 Creating new task
+    div.display_flex
+      BackButton
+      h1 Creating new task
 
     div.task-page__info Title:
-      br
       MyInput(
         :value.sync="task.title"
         @changeCreateTask="createTask"
       )
 
     div.task-page__info Description:
-      br
       MyInput(
         :value.sync="task.description"
         @changeCreateTask="createTask"

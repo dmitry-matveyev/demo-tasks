@@ -107,11 +107,11 @@ export default {
     // color: #eee
     color: rgb(144 165 184)
     font-size: 16px
-    width: 200px
+    width: 100%
     cursor: pointer
     outline: none
 
-  &__remove, &__create
+  &__remove
     background: #ffa1a1
     color: #9d0000
     font-weight: bold

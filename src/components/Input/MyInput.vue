@@ -1,6 +1,7 @@
 <template lang="pug">
   div
     input(
+      class="task-page__input"
       v-model="myValue"
       :type="type"
       @keyup.enter="createTask"
@@ -49,6 +50,9 @@ export default {
 };
 </script>
 <style lang="sass">
-  .task-page__error
-    color: red
+  .task-page
+    &__error
+      color: red
+    &__input
+      width: 100%
 </style>

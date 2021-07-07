@@ -1,7 +1,8 @@
 <template lang="pug">
   div.task-page
-    BackButton
-    h1 Task: {{ currentTaskData.title }}
+    div.display_flex
+      BackButton
+      h1 Task: {{ currentTaskData.title }}
 
     MyInput(
       :value.sync="currentTaskData.title"
@@ -137,7 +138,7 @@ export default {
     // color: #eee
     color: rgb(144 165 184)
     font-size: 16px
-    width: 200px
+    width: 100%
     cursor: pointer
 
   &__remove
