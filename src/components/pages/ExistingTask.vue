@@ -1,8 +1,17 @@
 <template lang="pug">
   div.task-page
+    BackButton
     h1 Task: {{ currentTaskData.title }}
 
-    div.task-page__info {{ currentTaskData.description }}
+    MyInput(
+      :value.sync="currentTaskData.title"
+      @input="titleHandler"
+    )
+
+    MyInput(
+      :value.sync="currentTaskData.description"
+      @input="descriptionHandler"
+    )
 
     div.task-page__date {{ currentTaskData.created_date }}
 
@@ -18,6 +27,10 @@
         :value="item.id"
       ) {{ item.title }}</option>
 
+    button(
+      class="task-page__create"
+      @click="editHandler"
+    ) Редактировать
     button(
       class="task-page__remove"
       @click="removeTask"
@@ -36,7 +49,10 @@ export default {
       default: () => {},
     },
   },
-
+  components: {
+    MyInput: () => import('@/components/Input/MyInput.vue'),
+    BackButton: () => import('@/components/Back/BackButton.vue'),
+  },
   data() {
     return {};
   },
@@ -65,11 +81,17 @@ export default {
           this.$router.push({ path: '/' });
         });
     },
-
-    async selectHandler(event) {
+    titleHandler(event) {
+      this.$emit('changeTitle', event.target.value);
+    },
+    descriptionHandler(event) {
+      this.$emit('changeDescription', event.target.value);
+    },
+    selectHandler(event) {
       const value = Number.parseInt(event.target.value, 10);
-
       this.$emit('changeStatus', value);
+    },
+    async editHandler() {
       this.$emit('changeLoadingState', true);
 
       await fetch(`http://localhost:3000/tasks/${this.currentTaskData.id}`, {
@@ -85,7 +107,7 @@ export default {
             this.$router.push({ path: '/error/' });
             throw response;
           }
-
+          this.$router.push({ path: '/' });
           return response.json();
         })
         .then(() => {
