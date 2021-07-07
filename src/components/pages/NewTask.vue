@@ -1,25 +1,24 @@
 <template lang="pug">
   div
-    h1 Creating new task
+    div.display_flex
+      BackButton
+      h1 Creating new task
 
     div.task-page__info Title:
-      br
-      input(
-        v-model="task.title"
-        type="text"
-        @keyup.enter="createTask"
+      MyInput(
+        :value.sync="task.title"
+        @changeCreateTask="createTask"
       )
 
     div.task-page__info Description:
-      br
-      input(
-        v-model="task.description"
-        type="text"
-        @keyup.enter="createTask"
+      MyInput(
+        :value.sync="task.description"
+        @changeCreateTask="createTask"
       )
 
     button.task-page__create(
       @click="createTask"
+      :disabled="!disabled"
     ) Create Task
 </template>
 
@@ -27,6 +26,10 @@
 export default {
   name: 'NewTask',
 
+  components: {
+    MyInput: () => import('@/components/Input/MyInput.vue'),
+    BackButton: () => import('@/components/Back/BackButton.vue'),
+  },
   data() {
     return {
       task: {
@@ -37,7 +40,11 @@ export default {
       },
     };
   },
-
+  computed: {
+    disabled() {
+      return this.task.title.length >= 3 && this.task.description.length >= 3;
+    },
+  },
   methods: {
     async createTask() {
       const date = new Date();

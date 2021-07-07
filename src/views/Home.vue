@@ -69,6 +69,11 @@ export default {
 </script>
 
 <style lang="sass">
+.display_flex
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  align-items: center
 .home
   position: relative
 

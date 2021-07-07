@@ -8,32 +8,18 @@
   ],
   "tasks": [
     {
-      "title": "task 1",
-      "description": "descr",
-      "status": 2,
-      "created_date": "2021-02-18T23:58:37.738Z",
+      "title": "gegeg",
+      "description": "123456688",
+      "status": 1,
+      "created_date": "2021-07-07T10:44:00.568Z",
       "id": 1
     },
     {
-      "title": "Task 2",
-      "description": "descr 2",
-      "status": 1,
-      "created_date": "2021-02-18T23:58:45.256Z",
-      "id": 2
-    },
-    {
-      "title": "super mega task ",
-      "description": "yo yo yo",
+      "title": "reer",
+      "description": "rerere",
       "status": 2,
-      "created_date": "2021-02-18T23:58:55.879Z",
-      "id": 3
-    },
-    {
-      "title": "happy task",
-      "description": "this is the end",
-      "status": 1,
-      "created_date": "2021-02-19T00:00:39.466Z",
-      "id": 4
+      "created_date": "2021-07-07T11:58:42.930Z",
+      "id": 2
     }
   ]
 }

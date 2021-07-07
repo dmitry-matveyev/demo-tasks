@@ -1,8 +1,16 @@
 <template lang="pug">
   div.task-page
-    h1 Task: {{ currentTaskData.title }}
+    div.display_flex
+      BackButton
+      h1 Task: {{ currentTaskData.title }}
 
-    div.task-page__info {{ currentTaskData.description }}
+    MyInput(
+      :value.sync="currentTaskData.title"
+    )
+
+    MyInput(
+      :value.sync="currentTaskData.description"
+    )
 
     div.task-page__date {{ currentTaskData.created_date }}
 
@@ -18,6 +26,10 @@
         :value="item.id"
       ) {{ item.title }}</option>
 
+    button(
+      class="task-page__create"
+      @click="editHandler"
+    ) Редактировать
     button(
       class="task-page__remove"
       @click="removeTask"
@@ -36,7 +48,10 @@ export default {
       default: () => {},
     },
   },
-
+  components: {
+    MyInput: () => import('@/components/Input/MyInput.vue'),
+    BackButton: () => import('@/components/Back/BackButton.vue'),
+  },
   data() {
     return {};
   },
@@ -65,11 +80,11 @@ export default {
           this.$router.push({ path: '/' });
         });
     },
-
-    async selectHandler(event) {
+    selectHandler(event) {
       const value = Number.parseInt(event.target.value, 10);
-
       this.$emit('changeStatus', value);
+    },
+    async editHandler() {
       this.$emit('changeLoadingState', true);
 
       await fetch(`http://localhost:3000/tasks/${this.currentTaskData.id}`, {
@@ -85,7 +100,7 @@ export default {
             this.$router.push({ path: '/error/' });
             throw response;
           }
-
+          this.$router.push({ path: '/' });
           return response.json();
         })
         .then(() => {
@@ -123,7 +138,7 @@ export default {
     // color: #eee
     color: rgb(144 165 184)
     font-size: 16px
-    width: 200px
+    width: 100%
     cursor: pointer
 
   &__remove
