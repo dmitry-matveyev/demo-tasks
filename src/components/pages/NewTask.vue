@@ -19,6 +19,7 @@
 
     button.task-page__create(
       @click="createTask"
+      :disabled="!disabled"
     ) Create Task
 </template>
 
@@ -30,7 +31,6 @@ export default {
     MyInput: () => import('@/components/Input/MyInput.vue'),
     BackButton: () => import('@/components/Back/BackButton.vue'),
   },
-
   data() {
     return {
       task: {
@@ -41,7 +41,11 @@ export default {
       },
     };
   },
-
+  computed: {
+    disabled() {
+      return this.task.title.length >= 3 && this.task.description.length >= 3;
+    },
+  },
   methods: {
     async createTask() {
       const date = new Date();

@@ -5,6 +5,9 @@
       :type="type"
       @keyup.enter="createTask"
     )
+    div(
+      v-if="!valid"
+    ).task-page__error Мин символов {{minSymbol}}
 </template>
 
 <script>
@@ -19,13 +22,21 @@ export default {
       type: String,
       default: 'text',
     },
+    minSymbol: {
+      type: Number,
+      default: 3,
+    },
   },
+  data: () => ({
+    valid: true,
+  }),
   computed: {
     myValue: {
       get() {
         return this.value;
       },
       set(val) {
+        this.valid = (val.length < this.minSymbol) ? false : 'true';
         this.$emit('update:value', val);
       },
     },
@@ -37,3 +48,7 @@ export default {
   },
 };
 </script>
+<style lang="sass">
+  .task-page__error
+    color: red
+</style>
