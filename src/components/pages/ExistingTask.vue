@@ -2,8 +2,17 @@
   div.task-page
     h1 Task: {{ currentTaskData.title }}
 
-    div.task-page__info {{ currentTaskData.description }}
+    input(
+      :value="currentTaskData.title"
+      type="text"
+      @input="titleHandler"
+    )
 
+    input(
+      :value="currentTaskData.description"
+      type="text"
+      @input="descriptionHandler"
+    )
     div.task-page__date {{ currentTaskData.created_date }}
 
     select(
@@ -18,6 +27,10 @@
         :value="item.id"
       ) {{ item.title }}</option>
 
+    button(
+      class="task-page__create"
+      @click="editHandler"
+    ) Редактировать
     button(
       class="task-page__remove"
       @click="removeTask"
@@ -65,11 +78,17 @@ export default {
           this.$router.push({ path: '/' });
         });
     },
-
-    async selectHandler(event) {
+    titleHandler(event) {
+      this.$emit('changeTitle', event.target.value);
+    },
+    descriptionHandler(event) {
+      this.$emit('changeDescription', event.target.value);
+    },
+    selectHandler(event) {
       const value = Number.parseInt(event.target.value, 10);
-
       this.$emit('changeStatus', value);
+    },
+    async editHandler() {
       this.$emit('changeLoadingState', true);
 
       await fetch(`http://localhost:3000/tasks/${this.currentTaskData.id}`, {
@@ -85,7 +104,7 @@ export default {
             this.$router.push({ path: '/error/' });
             throw response;
           }
-
+          this.$router.push({ path: '/' });
           return response.json();
         })
         .then(() => {
