@@ -1,5 +1,6 @@
 <template lang="pug">
   div
+    BackButton
     h1 Creating new task
 
     div.task-page__info Title:
@@ -27,6 +28,7 @@ export default {
 
   components: {
     MyInput: () => import('@/components/Input/MyInput.vue'),
+    BackButton: () => import('@/components/Back/BackButton.vue'),
   },
 
   data() {

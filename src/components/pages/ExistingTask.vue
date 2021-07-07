@@ -1,5 +1,6 @@
 <template lang="pug">
   div.task-page
+    BackButton
     h1 Task: {{ currentTaskData.title }}
 
     MyInput(
@@ -50,6 +51,7 @@ export default {
   },
   components: {
     MyInput: () => import('@/components/Input/MyInput.vue'),
+    BackButton: () => import('@/components/Back/BackButton.vue'),
   },
   data() {
     return {};
